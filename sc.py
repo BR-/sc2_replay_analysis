@@ -26,7 +26,7 @@ for i,replayname in enumerate(Path("replays").glob("**/*.SC2Replay")):
 	if unrecognized:
 		continue
 
-	races.update(x.play_race for x in replay.players if x)
+	races.update(x.play_race for x in replay.players)
 	for ev in replay.game_events:
 		if "ability_name" in dir(ev):
 			abilities[ev.player.play_race][ev.ability_name] += 1
