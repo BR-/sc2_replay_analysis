@@ -1,5 +1,5 @@
 import sc2reader, techlabreactor
-from glob import glob
+from pathlib import Path
 from collections import Counter
 from pprint import pprint
 def dump(ev):
@@ -10,15 +10,15 @@ def dump(ev):
 
 c = {"Terran": Counter(), "Zerg": Counter(), "Protoss": Counter()}
 races_games = Counter()
-total = len(list(glob(r"C:\Users\Benjamin\Documents\StarCraft II\Accounts\80393116\1-S2-1-3575269\Replays\Multiplayer\*")))
+total = len(list(Path("D:/scinput").glob("**/*.SC2Replay")))
 print(f"parsing {total} replays...")
-for i,replayname in enumerate(glob(r"C:\Users\Benjamin\Documents\StarCraft II\Accounts\80393116\1-S2-1-3575269\Replays\Multiplayer\*")):
-	try:
-		replay = sc2reader.load_replay(replayname)
-	except:
-		continue
-	if not replay.is_ladder:
-		continue
+for i,replayname in enumerate(Path("D:/scinput").glob("**/*.SC2Replay")):
+	#try:
+	replay = sc2reader.load_replay(replayname.open("rb"))
+	#except:
+		#continue
+	#if not replay.is_ladder:
+		#continue
 	races_games.update(x.play_race for x in replay.players if x)
 	for x in replay.game_events:
 		if "ability_name" in dir(x):
