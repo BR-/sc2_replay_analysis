@@ -1,0 +1,5 @@
+venv/
+replays/*.SC2Replay
+Protoss.json
+Terran.json
+Zerg.json
