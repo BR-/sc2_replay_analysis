@@ -1,5 +1,5 @@
 venv/
-replays/*.SC2Replay
+replays/
 Protoss.json
 Terran.json
 Zerg.json
